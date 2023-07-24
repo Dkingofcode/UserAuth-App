@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Navigate, useLocation } from 'react-router-dom';
+import Content from './Content';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute = ({ element: Content, ...rest }) => {
   const isAuthenticated = !!localStorage.getItem('authToken'); // Check if the user is authenticated
   const location = useLocation(); // Use the useLocation hook
 
   return (
     <Route
       {...rest}
-      element={isAuthenticated ? <Element /> : <Navigate to="/login"  state={{ from: location }} replace />} // Use Navigate component to redirect
+      element={isAuthenticated ? <Content /> : <Navigate to="/login"  state={{ from: location }} replace />} // Use Navigate component to redirect
     />
   );
 };
